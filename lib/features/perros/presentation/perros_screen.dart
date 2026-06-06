@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/network/api_exception.dart';
+import '../../../shared/widgets/app_drawer.dart';
 import '../data/perro_model.dart';
 import '../data/perros_repository.dart';
+import 'perro_detail_screen.dart';
 import 'perro_form_screen.dart';
 
 class PerrosScreen extends StatefulWidget {
@@ -72,7 +74,17 @@ class _PerrosScreenState extends State<PerrosScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Perros')),
+      appBar: AppBar(
+        title: const Text('Inicio - Pacientes'),
+        actions: [
+          IconButton(
+            onPressed: _cargarPerros,
+            icon: const Icon(Icons.refresh),
+            tooltip: 'Actualizar',
+          ),
+        ],
+      ),
+      drawer: const AppDrawer(currentRoute: '/'),
       body: RefreshIndicator(onRefresh: _cargarPerros, child: _buildContent()),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _abrirNuevoPerro,
@@ -146,36 +158,48 @@ class _PerrosScreenState extends State<PerrosScreen> {
       itemBuilder: (context, index) {
         final item = _items[index];
         return Card(
-          child: Padding(
-            padding: const EdgeInsets.all(14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.pets_outlined, size: 18),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: Text(
-                        item.nombre,
-                        style: Theme.of(context).textTheme.titleMedium,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(16),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => PerroDetailScreen(perro: item),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.pets_outlined, size: 18),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          item.nombre,
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                _InfoRow(icon: Icons.category_outlined, value: item.raza),
-                const SizedBox(height: 4),
-                _InfoRow(
-                  icon: Icons.cake_outlined,
-                  value: '${item.edad} anios',
-                ),
-                const SizedBox(height: 4),
-                _InfoRow(
-                  icon: Icons.person_outline,
-                  value: item.propietarioNombre ?? 'Propietario no disponible',
-                ),
-              ],
+                      const Icon(Icons.arrow_forward_ios, size: 14),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  _InfoRow(icon: Icons.category_outlined, value: item.raza),
+                  const SizedBox(height: 4),
+                  _InfoRow(
+                    icon: Icons.cake_outlined,
+                    value: '${item.edad} anios',
+                  ),
+                  const SizedBox(height: 4),
+                  _InfoRow(
+                    icon: Icons.person_outline,
+                    value:
+                        item.propietarioNombre ?? 'Propietario no disponible',
+                  ),
+                ],
+              ),
             ),
           ),
         );

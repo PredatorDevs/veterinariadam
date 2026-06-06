@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/network/api_exception.dart';
+import '../../../shared/widgets/app_drawer.dart';
 import '../data/propietarios_repository.dart';
 
 class PropietarioFormScreen extends StatefulWidget {
@@ -76,6 +77,7 @@ class _PropietarioFormScreenState extends State<PropietarioFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Nuevo Propietario')),
+      drawer: const AppDrawer(currentRoute: '/propietarios'),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../shared/widgets/app_drawer.dart';
+
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
 
@@ -7,6 +9,7 @@ class MainMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Veterinaria DAM')),
+      drawer: const AppDrawer(currentRoute: '/menu'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

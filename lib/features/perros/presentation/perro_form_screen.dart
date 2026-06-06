@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/network/api_exception.dart';
+import '../../../shared/widgets/app_drawer.dart';
 import '../../propietarios/data/propietario_model.dart';
 import '../../propietarios/data/propietarios_repository.dart';
 import '../data/perros_repository.dart';
@@ -128,6 +129,7 @@ class _PerroFormScreenState extends State<PerroFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Nuevo Perro')),
+      drawer: const AppDrawer(currentRoute: '/perros'),
       body: _cargandoPropietarios
           ? const Center(child: CircularProgressIndicator())
           : _buildBody(),

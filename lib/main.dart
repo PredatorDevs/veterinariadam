@@ -22,7 +22,8 @@ class VeterinariaApp extends StatelessWidget {
       theme: AppTheme.light,
       initialRoute: '/',
       routes: {
-        '/': (context) => const MainMenuScreen(),
+        '/': (context) => const PerrosScreen(),
+        '/menu': (context) => const MainMenuScreen(),
         '/propietarios': (context) => const PropietariosScreen(),
         '/perros': (context) => const PerrosScreen(),
         '/historial': (context) => const HistorialScreen(),

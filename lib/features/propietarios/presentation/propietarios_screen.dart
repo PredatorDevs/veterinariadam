@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/network/api_exception.dart';
+import '../../../shared/widgets/app_drawer.dart';
 import '../data/propietario_model.dart';
 import '../data/propietarios_repository.dart';
 import 'propietario_form_screen.dart';
@@ -73,6 +74,7 @@ class _PropietariosScreenState extends State<PropietariosScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Propietarios')),
+      drawer: const AppDrawer(currentRoute: '/propietarios'),
       body: RefreshIndicator(
         onRefresh: _cargarPropietarios,
         child: _buildContent(),

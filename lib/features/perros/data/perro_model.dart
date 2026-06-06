@@ -6,6 +6,9 @@ class PerroModel {
     required this.edad,
     required this.propietarioId,
     this.propietarioNombre,
+    this.propietarioTelefono,
+    this.propietarioDireccion,
+    this.propietarioCorreo,
   });
 
   final String id;
@@ -14,16 +17,25 @@ class PerroModel {
   final int edad;
   final String propietarioId;
   final String? propietarioNombre;
+  final String? propietarioTelefono;
+  final String? propietarioDireccion;
+  final String? propietarioCorreo;
 
   factory PerroModel.fromJson(Map<String, dynamic> json) {
     final propietarioRaw = json['propietario'];
 
     String propietarioId = '';
     String? propietarioNombre;
+    String? propietarioTelefono;
+    String? propietarioDireccion;
+    String? propietarioCorreo;
 
     if (propietarioRaw is Map) {
       propietarioId = (propietarioRaw['_id'] ?? '').toString();
       propietarioNombre = propietarioRaw['nombre']?.toString();
+      propietarioTelefono = propietarioRaw['telefono']?.toString();
+      propietarioDireccion = propietarioRaw['direccion']?.toString();
+      propietarioCorreo = propietarioRaw['correo']?.toString();
     } else {
       propietarioId = (propietarioRaw ?? '').toString();
     }
@@ -35,6 +47,9 @@ class PerroModel {
       edad: _toInt(json['edad']),
       propietarioId: propietarioId,
       propietarioNombre: propietarioNombre,
+      propietarioTelefono: propietarioTelefono,
+      propietarioDireccion: propietarioDireccion,
+      propietarioCorreo: propietarioCorreo,
     );
   }
 

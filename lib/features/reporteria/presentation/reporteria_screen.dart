@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/network/api_exception.dart';
+import '../../../shared/widgets/app_drawer.dart';
 import '../data/reporteria_service.dart';
 
 class ReporteriaScreen extends StatefulWidget {
@@ -64,6 +65,7 @@ class _ReporteriaScreenState extends State<ReporteriaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Reporteria')),
+      drawer: const AppDrawer(currentRoute: '/reporteria'),
       body: RefreshIndicator(onRefresh: _cargar, child: _buildBody()),
     );
   }

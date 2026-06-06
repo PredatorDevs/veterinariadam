@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/network/api_exception.dart';
+import '../../../shared/widgets/app_drawer.dart';
 import '../../perros/data/perro_model.dart';
 import '../../perros/data/perros_repository.dart';
 import '../data/historial_model.dart';
@@ -127,6 +128,7 @@ class _HistorialScreenState extends State<HistorialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Historial')),
+      drawer: const AppDrawer(currentRoute: '/historial'),
       body: RefreshIndicator(
         onRefresh: () async {
           if (_perroSeleccionado != null) {
